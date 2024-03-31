@@ -1,10 +1,17 @@
 package com.cui.eduservice.controller;
 
 
+import com.cui.commonutils.R;
+import com.cui.eduservice.entity.EduChapter;
+import com.cui.eduservice.entity.vo.ChapterVo;
+import com.cui.eduservice.service.EduChapterService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * <p>
@@ -17,8 +24,60 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/eduservice/edu-chapter")
 @CrossOrigin
-@Api(tags = "课程编辑")
+@Api(tags = "课程章节编辑")
 public class EduChapterController {
+    @Autowired
+    private EduChapterService eduChapterService;
 
+    @ApiOperation(value = "嵌套章节数据列表")
+    @GetMapping("nested-list/{courseId}")
+    public R nestedListByCourseId(
+            @ApiParam(name = "courseId", value = "课程ID", required = true)
+            @PathVariable String courseId) {
+        List<ChapterVo> chapterVoList = eduChapterService.nestedList(courseId);
+        return R.ok().data("items", chapterVoList);
+    }
+
+    @ApiOperation(value = "新增章节")
+    @PostMapping
+    public R save(
+            @ApiParam(name = "chapterVo", value = "章节对象", required = true)
+            @RequestBody EduChapter eduChapter) {
+        eduChapterService.save(eduChapter);
+        return R.ok();
+    }
+
+    @ApiOperation(value = "根据ID查询章节")
+    @GetMapping("{id}")
+    public R getById(
+            @ApiParam(name = "id", value = "章节ID", required = true)
+            @PathVariable String id) {
+        EduChapter eduChapter = eduChapterService.getById(id);
+        return R.ok().data("item", eduChapter);
+    }
+
+    @ApiOperation(value = "根据ID修改章节")
+    @PutMapping
+    public R updateById(
+            @ApiParam(name = "chapter", value = "章节对象", required = true)
+            @RequestBody EduChapter eduChapter) {
+        //改进：id放进chapter内？
+//        eduChapter.setId(id);
+        eduChapterService.updateById(eduChapter);
+        return R.ok();
+    }
+
+    @ApiOperation(value = "根据ID删除章节")
+    @DeleteMapping("{id}")
+    public R removeById(
+            @ApiParam(name = "id", value = "章节ID", required = true)
+            @PathVariable String id) {
+        boolean result = eduChapterService.removeChapterById(id);
+        if (result) {
+            return R.ok();
+        } else {
+            return R.error().message("删除失败");
+        }
+    }
 }
 

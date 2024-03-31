@@ -14,9 +14,26 @@ import com.cui.eduservice.entity.vo.CourseInfoVo;
  */
 public interface EduCourseService extends IService<EduCourse> {
 
+    /**
+     * 保存课程信息
+     *
+     * @param courseInfoVo
+     * @return
+     */
     String saveEduCourseInfo(CourseInfoVo courseInfoVo);
 
+    /**
+     * 根据id获取课程信息
+     *
+     * @param id
+     * @return
+     */
     CourseInfoVo getEduCourseInfoFormById(String id);
 
+    /**
+     * 更新课程信息
+     *
+     * @param courseInfoVo
+     */
     void updateEduCourseInfoById(CourseInfoVo courseInfoVo);
 }

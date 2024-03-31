@@ -12,5 +12,11 @@ import com.cui.eduservice.entity.EduVideo;
  * @since 2024-03-29
  */
 public interface EduVideoService extends IService<EduVideo> {
-
+    /**
+     * 根据课程id返回章节数量
+     *
+     * @param chapterId
+     * @return
+     */
+    boolean getCountByChapterId(String chapterId);
 }
