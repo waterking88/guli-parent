@@ -1,7 +1,9 @@
 package com.cui.oss.service.impl;
 
+import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.CannedAccessControlList;
 import com.cui.oss.service.FileService;
 import com.cui.oss.utils.ConstantPropertiesUtil;
@@ -60,4 +62,41 @@ public class FileServiceImpl implements FileService {
         }
         return uploadUrl;
     }
+
+    @Override
+    public void remove(String url) {
+        String fileHost = ConstantPropertiesUtil.FILE_HOST;
+        //判断是否为默认封面
+        if (url.contains(fileHost)) {
+            String endPoint = ConstantPropertiesUtil.END_POINT;
+            String accessKeyId = ConstantPropertiesUtil.ACCESS_KEY_ID;
+            String accessKeySecret = ConstantPropertiesUtil.ACCESS_KEY_SECRET;
+            String bucketName = ConstantPropertiesUtil.BUCKET_NAME;
+
+            String objectName = url.substring(url.lastIndexOf(fileHost));
+            OSS ossClient = new OSSClientBuilder().build(endPoint, accessKeyId,
+                    accessKeySecret);
+            try {
+                // 删除文件或目录。如果要删除目录，目录必须为空。
+                ossClient.deleteObject(bucketName, objectName);
+            } catch (OSSException oe) {
+                System.out.println("Caught an OSSException, which means your request made it to OSS, "
+                        + "but was rejected with an error response for some reason.");
+                System.out.println("Error Message:" + oe.getErrorMessage());
+                System.out.println("Error Code:" + oe.getErrorCode());
+                System.out.println("Request ID:" + oe.getRequestId());
+                System.out.println("Host ID:" + oe.getHostId());
+            } catch (ClientException ce) {
+                System.out.println("Caught an ClientException, which means the client encountered "
+                        + "a serious internal problem while trying to communicate with OSS, "
+                        + "such as not being able to access the network.");
+                System.out.println("Error Message:" + ce.getMessage());
+            } finally {
+                if (ossClient != null) {
+                    ossClient.shutdown();
+                }
+            }
+        }
+    }
+
 }

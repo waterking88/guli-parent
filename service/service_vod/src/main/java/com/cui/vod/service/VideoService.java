@@ -2,6 +2,8 @@ package com.cui.vod.service;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * @author water
  * @date 2024/4/4
@@ -22,4 +24,11 @@ public interface VideoService {
      * @param videoId
      */
     void removeVideo(String videoId);
+
+    /**
+     * 根据视频id批量删除
+     *
+     * @param videoIdList
+     */
+    void removeVideoList(List<String> videoIdList);
 }

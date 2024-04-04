@@ -3,6 +3,7 @@ package com.cui.oss;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * @date 2024/3/27
  * @Description
  */
+@EnableDiscoveryClient
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 @ComponentScan(basePackages = {"com.cui"})
 public class OssApplication {

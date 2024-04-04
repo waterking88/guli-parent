@@ -15,4 +15,11 @@ public interface FileService {
      * @return
      */
     String upload(MultipartFile file);
+
+    /**
+     * 根据文件路径删除云端文件
+     *
+     * @param file
+     */
+    void remove(String file);
 }

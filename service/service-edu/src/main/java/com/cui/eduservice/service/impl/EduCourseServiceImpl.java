@@ -3,13 +3,17 @@ package com.cui.eduservice.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cui.eduservice.client.OssClient;
 import com.cui.eduservice.entity.EduCourse;
 import com.cui.eduservice.entity.EduCourseDescription;
 import com.cui.eduservice.entity.vo.CourseInfoVo;
 import com.cui.eduservice.entity.vo.CoursePublishVo;
 import com.cui.eduservice.entity.vo.CourseQuery;
 import com.cui.eduservice.mapper.EduCourseMapper;
-import com.cui.eduservice.service.*;
+import com.cui.eduservice.service.EduChapterService;
+import com.cui.eduservice.service.EduCourseDescriptionService;
+import com.cui.eduservice.service.EduCourseService;
+import com.cui.eduservice.service.EduVideoService;
 import com.cui.servicebase.exception.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +35,7 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
     private EduCourseDescriptionService eduCourseDescriptionService;
 
     @Autowired
-    private EduSubjectService eduSubjectService;
+    private OssClient ossClient;
 
     @Autowired
     private EduVideoService eduVideoService;
@@ -142,6 +146,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         eduVideoService.removeByCourseId(id);
         //根据id删除所有章节
         eduChapterService.removeByCourseId(id);
+        //根据id删除所有课程详情
+        eduCourseDescriptionService.removeById(id);
+        //删除封面     查出cover，远程调用oss删除
+        EduCourse eduCourse = this.getById(id);
+        String cover = eduCourse.getCover();
+        ossClient.remove(cover);
+
         Integer result = baseMapper.deleteById(id);
         return null != result && result > 0;
     }

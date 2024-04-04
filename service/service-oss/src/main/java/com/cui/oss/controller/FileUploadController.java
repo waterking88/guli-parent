@@ -36,4 +36,18 @@ public class FileUploadController {
         //返回r对象
         return R.ok().message("文件上传成功").data("url", uploadUrl);
     }
+
+    /**
+     * 删除文件
+     *
+     * @param url
+     */
+    @ApiOperation(value = "删除文件")
+    @DeleteMapping("remove")
+    public R remove(
+            @ApiParam(name = "url", value = "文件路径", required = true)
+            @RequestParam("url") String url) {
+        fileService.remove(url);
+        return R.ok().message("文件删除成功");
+    }
 }
