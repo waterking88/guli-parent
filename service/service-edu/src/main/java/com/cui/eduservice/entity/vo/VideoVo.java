@@ -6,6 +6,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 用于构建ChapterVo的链表
+ *
  * @author water
  * @date 2024/3/31
  * @Description

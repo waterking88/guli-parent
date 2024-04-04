@@ -61,8 +61,6 @@ public class EduChapterController {
     public R updateById(
             @ApiParam(name = "chapter", value = "章节对象", required = true)
             @RequestBody EduChapter eduChapter) {
-        //改进：id放进chapter内？
-//        eduChapter.setId(id);
         eduChapterService.updateById(eduChapter);
         return R.ok();
     }

@@ -24,4 +24,18 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         Integer count = baseMapper.selectCount(queryWrapper);
         return null != count && count > 0;
     }
+
+    /**
+     * TODO 删除课时，删除对应视频文件
+     *
+     * @param courseId
+     * @return
+     */
+    @Override
+    public boolean removeByCourseId(String courseId) {
+        QueryWrapper<EduVideo> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id", courseId);
+        Integer count = baseMapper.delete(queryWrapper);
+        return null != count && count > 0;
+    }
 }

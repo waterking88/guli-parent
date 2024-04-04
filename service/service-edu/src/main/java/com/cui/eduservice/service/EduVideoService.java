@@ -19,4 +19,12 @@ public interface EduVideoService extends IService<EduVideo> {
      * @return
      */
     boolean getCountByChapterId(String chapterId);
+
+    /**
+     * 根据课程id删除video
+     *
+     * @param courseId
+     * @return
+     */
+    boolean removeByCourseId(String courseId);
 }

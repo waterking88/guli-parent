@@ -14,6 +14,7 @@
     <modules>
         <module>service-edu</module>
         <module>service-oss</module>
+        <module>service_vod</module>
     </modules>
     <dependencies>
         <!--            2024.3.19：一开始未使用先注释，否则报错-->
@@ -122,4 +123,15 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

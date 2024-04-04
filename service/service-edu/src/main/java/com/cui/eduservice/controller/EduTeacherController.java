@@ -1,21 +1,17 @@
 package com.cui.eduservice.controller;
 
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cui.commonutils.R;
 import com.cui.eduservice.entity.EduTeacher;
 import com.cui.eduservice.entity.vo.EduTeacherQuery;
 import com.cui.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiModelProperty;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,12 +29,6 @@ import java.util.List;
 @Api(tags = "讲师管理")
 public class EduTeacherController {
 
-    @ApiModelProperty(value = "创建时间", example = "2019-01-01 8:00:00")
-    @TableField(fill = FieldFill.INSERT)
-    private Date gmtCreate;
-    @ApiModelProperty(value = "更新时间", example = "2019-01-01 8:00:00")
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date gmtModified;
 
     @Autowired
     private EduTeacherService eduTeacherService;
