@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 /**
+ * feign client
+ *
  * @author water
  * @date 2024/4/4
  * @Description
  */
-@FeignClient("service-vod")
+@FeignClient(name = "service-vod", fallback = VodFileDegradeFeignClient.class)
 @Component
 public interface VodClient {
 

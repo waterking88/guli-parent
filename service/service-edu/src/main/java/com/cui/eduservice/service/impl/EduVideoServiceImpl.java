@@ -2,10 +2,13 @@ package com.cui.eduservice.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cui.commonutils.R;
+import com.cui.commonutils.ResultCode;
 import com.cui.eduservice.client.VodClient;
 import com.cui.eduservice.entity.EduVideo;
 import com.cui.eduservice.mapper.EduVideoMapper;
 import com.cui.eduservice.service.EduVideoService;
+import com.cui.servicebase.exception.GuliException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -69,9 +72,13 @@ public class EduVideoServiceImpl extends ServiceImpl<EduVideoMapper, EduVideo> i
         //查询云端视频id
         EduVideo video = baseMapper.selectById(id);
         String videoSourceId = video.getVideoSourceId();
+        System.out.println(videoSourceId);
         //删除视频资源
         if (!StringUtils.isEmpty(videoSourceId)) {
-            vodClient.removeVideo(videoSourceId);
+            R result = vodClient.removeVideo(videoSourceId);
+            if (result.getCode().equals(ResultCode.SUCCESS)) {
+                throw new GuliException(20001, "删除视频失败，熔断器.....");
+            }
         }
         Integer result = baseMapper.deleteById(id);
         return null != result && result > 0;

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
+ * feign client
+ *
  * @author water
  * @date 2024/4/4
  * @Description
