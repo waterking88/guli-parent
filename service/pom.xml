@@ -16,6 +16,8 @@
         <module>service-oss</module>
         <module>service_vod</module>
         <module>service-cms</module>
+        <module>service-msm</module>
+        <module>service-ucenter</module>
     </modules>
     <dependencies>
         <!--        2024.3.19：一开始未使用先注释，否则报错-->
