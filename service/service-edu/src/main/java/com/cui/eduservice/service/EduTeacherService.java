@@ -6,6 +6,7 @@ import com.cui.eduservice.entity.EduTeacher;
 import com.cui.eduservice.entity.vo.EduTeacherQuery;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -32,4 +33,10 @@ public interface EduTeacherService extends IService<EduTeacher> {
      */
     @Override
     boolean removeById(Serializable id);
+
+    /***
+     * 获取热门教师
+     * @return
+     */
+    List<EduTeacher> getPopularTeachers();
 }

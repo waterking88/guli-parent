@@ -7,10 +7,12 @@ import com.cui.eduservice.entity.EduTeacher;
 import com.cui.eduservice.entity.vo.EduTeacherQuery;
 import com.cui.eduservice.mapper.EduTeacherMapper;
 import com.cui.eduservice.service.EduTeacherService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
@@ -54,5 +56,14 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     public boolean removeById(Serializable id) {
         Integer result = baseMapper.deleteById(id);
         return null != result && result > 0;
+    }
+
+    @Cacheable(value = "EduTeacher", key = "'popularTeachers'")
+    @Override
+    public List<EduTeacher> getPopularTeachers() {
+        QueryWrapper<EduTeacher> wrapperTeacher = new QueryWrapper<>();
+        wrapperTeacher.orderByDesc("id");
+        wrapperTeacher.last("limit 4");
+        return baseMapper.selectList(wrapperTeacher);
     }
 }

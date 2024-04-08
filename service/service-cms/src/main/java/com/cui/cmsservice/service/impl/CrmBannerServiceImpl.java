@@ -7,6 +7,8 @@ import com.cui.cmsservice.entity.CrmBanner;
 import com.cui.cmsservice.entity.vo.CrmBannerQuery;
 import com.cui.cmsservice.mapper.CrmBannerMapper;
 import com.cui.cmsservice.service.CrmBannerService;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -23,16 +25,19 @@ import java.util.List;
 @Service
 public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner> implements CrmBannerService {
 
+    @CacheEvict(value = "banner", allEntries = true)
     @Override
     public void removeBannerById(String id) {
         baseMapper.deleteById(id);
     }
 
+    @CacheEvict(value = "banner", allEntries = true)
     @Override
     public void updateBannerById(CrmBanner banner) {
         baseMapper.updateById(banner);
     }
 
+    @CacheEvict(value = "banner", allEntries = true)
     @Override
     public void saveBanner(CrmBanner banner) {
         baseMapper.insert(banner);
@@ -75,8 +80,10 @@ public class CrmBannerServiceImpl extends ServiceImpl<CrmBannerMapper, CrmBanner
         baseMapper.selectPage(pageParam, queryWrapper);
     }
 
+    @Cacheable(value = "banner", key = "'selectIndexList'")
     @Override
     public List<CrmBanner> selectIndexList() {
-        return baseMapper.selectList(null);
+        List<CrmBanner> list = baseMapper.selectList(new QueryWrapper<CrmBanner>().orderByDesc("sort"));
+        return list;
     }
 }

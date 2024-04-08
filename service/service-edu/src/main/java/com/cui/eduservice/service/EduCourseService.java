@@ -7,6 +7,8 @@ import com.cui.eduservice.entity.vo.CourseInfoVo;
 import com.cui.eduservice.entity.vo.CoursePublishVo;
 import com.cui.eduservice.entity.vo.CourseQuery;
 
+import java.util.List;
+
 /**
  * <p>
  * 课程 服务类
@@ -72,4 +74,11 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     boolean removeCourseById(String id);
+
+    /**
+     * 首页显示热门课程
+     *
+     * @return
+     */
+    List<EduCourse> getPopularCourses();
 }

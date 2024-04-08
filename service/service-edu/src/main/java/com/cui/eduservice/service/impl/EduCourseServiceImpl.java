@@ -17,8 +17,11 @@ import com.cui.eduservice.service.EduVideoService;
 import com.cui.servicebase.exception.GuliException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+
+import java.util.List;
 
 /**
  * <p>
@@ -156,6 +159,17 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         Integer result = baseMapper.deleteById(id);
         return null != result && result > 0;
     }
+
+    @Cacheable(value = "EduCourse", key = "'popularCourses'")
+    @Override
+    public List<EduCourse> getPopularCourses() {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("id");
+        wrapper.last("limit 8");
+        return baseMapper.selectList(wrapper);
+    }
+
+
 }
 
 
