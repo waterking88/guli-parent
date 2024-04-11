@@ -10,7 +10,6 @@ import com.cui.ucenterservice.entity.vo.LoginVo;
 import com.cui.ucenterservice.entity.vo.RegisterVo;
 import com.cui.ucenterservice.mapper.UcenterMemberMapper;
 import com.cui.ucenterservice.service.UcenterMemberService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -95,11 +94,23 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         this.save(ucenterMember);
     }
 
+    /**
+     * debug :该方法课件中返回值为LoginVo,缺少用户id，导致前端无法根据id判断用户是否已经登录.更改 LoginVO ===> UcenterMember
+     *
+     * @param memberId
+     * @return
+     */
     @Override
-    public LoginVo getLoginInfo(String memberId) {
+    public UcenterMember getLoginInfo(String memberId) {
         UcenterMember ucenterMember = baseMapper.selectById(memberId);
-        LoginVo infoVo = new LoginVo();
-        BeanUtils.copyProperties(ucenterMember, infoVo);
-        return infoVo;
+        return ucenterMember;
+    }
+
+    @Override
+    public UcenterMember getByOpenid(String openid) {
+        QueryWrapper<UcenterMember> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("openid", openid);
+        UcenterMember ucenterMember = baseMapper.selectOne(queryWrapper);
+        return ucenterMember;
     }
 }

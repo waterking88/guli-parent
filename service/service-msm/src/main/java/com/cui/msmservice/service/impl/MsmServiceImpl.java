@@ -41,7 +41,8 @@ public class MsmServiceImpl implements MsmService {
         request.setMethod(MethodType.POST);
         //请求路径
         request.setDomain("dysmsapi.aliyuncs.com");
-        request.setVersion("2024-04-08");
+        //修改版本号，使用最近的日期会报非法版本
+        request.setVersion("2017-05-25");
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", PhoneNumbers);
         request.putQueryParameter("SignName", "个人谷粒在线教育平台网站");

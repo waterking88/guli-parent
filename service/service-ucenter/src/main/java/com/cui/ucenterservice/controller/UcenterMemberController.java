@@ -4,6 +4,7 @@ package com.cui.ucenterservice.controller;
 import com.cui.commonutils.JwtUtils;
 import com.cui.commonutils.R;
 import com.cui.servicebase.exception.GuliException;
+import com.cui.ucenterservice.entity.UcenterMember;
 import com.cui.ucenterservice.entity.vo.LoginVo;
 import com.cui.ucenterservice.entity.vo.RegisterVo;
 import com.cui.ucenterservice.service.UcenterMemberService;
@@ -37,6 +38,11 @@ public class UcenterMemberController {
         return R.ok().data("token", token);
     }
 
+    @GetMapping("test")
+    public R login() {
+        return R.ok().data("test", "test");
+    }
+
     @ApiOperation(value = "会员注册")
     @PostMapping("register")
     public R register(@RequestBody RegisterVo registerVo) {
@@ -49,8 +55,8 @@ public class UcenterMemberController {
     public R getLoginInfo(HttpServletRequest request) {
         try {
             String memberId = JwtUtils.getMemberIdByJwtToken(request);
-            LoginVo loginInfo = ucenterMemberService.getLoginInfo(memberId);
-            return R.ok().data("item", loginInfo);
+            UcenterMember ucenterMember = ucenterMemberService.getLoginInfo(memberId);
+            return R.ok().data("item", ucenterMember);
         } catch (Exception e) {
             e.printStackTrace();
             throw new GuliException(20001, "error");

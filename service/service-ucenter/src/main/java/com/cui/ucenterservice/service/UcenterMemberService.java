@@ -36,5 +36,13 @@ public interface UcenterMemberService extends IService<UcenterMember> {
      * @param memberId
      * @return
      */
-    LoginVo getLoginInfo(String memberId);
+    UcenterMember getLoginInfo(String memberId);
+
+    /**
+     * 根据微信openid获取用户信息
+     *
+     * @param openid
+     * @return
+     */
+    UcenterMember getByOpenid(String openid);
 }

@@ -35,9 +35,9 @@ public class MsmApiController {
             return R.ok();
         }
         code = RandomUtil.getFourBitRandom();
-        Map<String, Object> param = new HashMap<>(2);
+        Map<String, Object> param = new HashMap<>();
         param.put("code", code);
-        boolean isSend = msmService.send(phone, "SMS_296870996", param);
+        boolean isSend = msmService.send(phone, "SMS_465334847", param);
         if (isSend) {
             redisTemplate.opsForValue().set(phone, code, 5, TimeUnit.MINUTES);
             return R.ok();
