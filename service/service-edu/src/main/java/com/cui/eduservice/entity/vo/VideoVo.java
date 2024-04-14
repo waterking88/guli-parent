@@ -20,6 +20,7 @@ public class VideoVo implements Serializable {
     private String id;
     private String title;
     private Boolean free;
+    private String videoSourceId;
     @ApiModelProperty(value = "云服务器上存储的视频文件名称")
     private String videoOriginalName;
 }

@@ -3,11 +3,14 @@ package com.cui.eduservice.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cui.eduservice.entity.EduCourse;
+import com.cui.eduservice.entity.frontvo.CourseQueryVo;
+import com.cui.eduservice.entity.frontvo.CourseWebVo;
 import com.cui.eduservice.entity.vo.CourseInfoVo;
 import com.cui.eduservice.entity.vo.CoursePublishVo;
 import com.cui.eduservice.entity.vo.CourseQuery;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -81,4 +84,17 @@ public interface EduCourseService extends IService<EduCourse> {
      * @return
      */
     List<EduCourse> getPopularCourses();
+
+    List<EduCourse> selectByTeacherId(String id);
+
+    Map<String, Object> pageListWeb(Page<EduCourse> pageParam, CourseQueryVo courseQuery);
+
+    CourseWebVo getBaseCourseInfo(String courseId);
+
+    /**
+     * 更新课程浏览数
+     *
+     * @param id
+     */
+    void updatePageViewCount(String id);
 }

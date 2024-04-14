@@ -7,6 +7,7 @@ import com.cui.eduservice.entity.vo.EduTeacherQuery;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -39,4 +40,6 @@ public interface EduTeacherService extends IService<EduTeacher> {
      * @return
      */
     List<EduTeacher> getPopularTeachers();
+
+    Map<String, Object> pageListWeb(Page<EduTeacher> pageParam);
 }

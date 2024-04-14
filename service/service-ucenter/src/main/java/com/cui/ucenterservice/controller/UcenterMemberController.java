@@ -3,6 +3,7 @@ package com.cui.ucenterservice.controller;
 
 import com.cui.commonutils.JwtUtils;
 import com.cui.commonutils.R;
+import com.cui.commonutils.eduvo.UcenterMemberEdu;
 import com.cui.servicebase.exception.GuliException;
 import com.cui.ucenterservice.entity.UcenterMember;
 import com.cui.ucenterservice.entity.vo.LoginVo;
@@ -10,6 +11,7 @@ import com.cui.ucenterservice.entity.vo.RegisterVo;
 import com.cui.ucenterservice.service.UcenterMemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -62,5 +64,22 @@ public class UcenterMemberController {
             throw new GuliException(20001, "error");
         }
     }
+
+    /**
+     * 根据token字符串获取用户信息实体
+     *
+     * @param id
+     * @return
+     */
+    @PostMapping("getInfoUc/{id}")
+    public UcenterMemberEdu getInfo(@PathVariable String id) {
+        //根据用户id获取用户信息
+        UcenterMember ucenterMember = ucenterMemberService.getById(id);
+        UcenterMemberEdu ucenterMemberEdu = new UcenterMemberEdu();
+        BeanUtils.copyProperties(ucenterMember, ucenterMemberEdu);
+        return ucenterMemberEdu;
+    }
+
+
 }
 
