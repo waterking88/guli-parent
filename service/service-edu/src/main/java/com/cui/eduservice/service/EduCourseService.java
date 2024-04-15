@@ -85,10 +85,29 @@ public interface EduCourseService extends IService<EduCourse> {
      */
     List<EduCourse> getPopularCourses();
 
+    /**
+     * 根据讲师id查询这个讲师的课程列表
+     *
+     * @param id
+     * @return
+     */
     List<EduCourse> selectByTeacherId(String id);
 
+    /**
+     * 分页查询课程，前端展示
+     *
+     * @param pageParam
+     * @param courseQuery
+     * @return
+     */
     Map<String, Object> pageListWeb(Page<EduCourse> pageParam, CourseQueryVo courseQuery);
 
+    /**
+     * 获取课程详情页面的课程基本信息
+     *
+     * @param courseId
+     * @return
+     */
     CourseWebVo getBaseCourseInfo(String courseId);
 
     /**

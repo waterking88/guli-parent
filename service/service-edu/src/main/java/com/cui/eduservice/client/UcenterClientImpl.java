@@ -1,6 +1,7 @@
 package com.cui.eduservice.client;
 
 import com.cui.commonutils.eduvo.UcenterMemberEdu;
+import com.cui.servicebase.exception.GuliException;
 import org.springframework.stereotype.Component;
 
 /**
@@ -13,6 +14,6 @@ public class UcenterClientImpl implements UcenterClient {
 
     @Override
     public UcenterMemberEdu getInfo(String id) {
-        return null;
+        throw new GuliException(20001, "time out");
     }
 }

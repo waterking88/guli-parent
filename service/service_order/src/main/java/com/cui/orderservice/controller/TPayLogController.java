@@ -43,7 +43,7 @@ public class TPayLogController {
             return R.error().message("支付出错");
         }
         //如果成功
-        if (map.get("trade_state").equals("SUCCESS")) {
+        if ("SUCCESS".equals(map.get("trade_state"))) {
             //更改订单状态
             tPayLogService.updateOrderStatus(map);
             return R.ok().message("支付成功");

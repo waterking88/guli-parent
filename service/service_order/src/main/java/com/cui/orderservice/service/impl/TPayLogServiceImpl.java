@@ -93,14 +93,19 @@ public class TPayLogServiceImpl extends ServiceImpl<TPayLogMapper, TPayLog> impl
         orderService.updateById(order);
         //记录支付日志
         TPayLog payLog = new TPayLog();
-        payLog.setOrderNo(order.getOrderNo());//支付订单号
+        //支付订单号
+        payLog.setOrderNo(order.getOrderNo());
         payLog.setPayTime(new Date());
-        payLog.setPayType(1);//支付类型
-        payLog.setTotalFee(order.getTotalFee());//总金额(分)
-        payLog.setTradeState(map.get("trade_state"));//支付状态
+        //支付类型
+        payLog.setPayType(1);
+        //总金额(分)
+        payLog.setTotalFee(order.getTotalFee());
+        //支付状态
+        payLog.setTradeState(map.get("trade_state"));
         payLog.setTransactionId(map.get("transaction_id"));
         payLog.setAttr(JSONObject.toJSONString(map));
-        baseMapper.insert(payLog);//插入到支付日志表
+        //插入到支付日志表
+        baseMapper.insert(payLog);
     }
 
     @Override

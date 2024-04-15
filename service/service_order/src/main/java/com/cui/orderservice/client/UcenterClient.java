@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Component
 @FeignClient("service-ucenter")
 public interface UcenterClient {
-    //根据课程id查询课程信息
+    /**
+     * //根据课程id查询课程信息
+     *
+     * @param id
+     * @return
+     */
     @PostMapping("/ucenterservice/ucenter-member/getInfoUc/{id}")
     UcenterMemberEdu getInfo(@PathVariable("id") String id);
 }

@@ -36,7 +36,6 @@ public class MsmServiceImpl implements MsmService {
                         "6N5D3dJ8bMRK281P5iw1Im5pk4k8YQ");
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
-        //request.setProtocol(ProtocolType.HTTPS);
         //提交方式
         request.setMethod(MethodType.POST);
         //请求路径

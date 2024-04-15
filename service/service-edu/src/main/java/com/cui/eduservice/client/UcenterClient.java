@@ -15,7 +15,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Component
 @FeignClient(name = "service-ucenter", fallback = UcenterClientImpl.class)
 public interface UcenterClient {
-    //根据用户id获取用户信息
+    /**
+     * 根据用户id获取用户信息
+     *
+     * @param id
+     * @return
+     */
     @PostMapping("/ucenterservice/ucenter-member/getInfoUc/{id}")
     UcenterMemberEdu getInfo(@PathVariable("id") String id);
 }

@@ -22,5 +22,11 @@ public interface EduCourseMapper extends BaseMapper<EduCourse> {
      */
     CoursePublishVo getCoursePublishVoById(String id);
 
+    /**
+     * 获取课程基本信息，用于课程详情页面展示
+     *
+     * @param courseId
+     * @return
+     */
     CourseWebVo getBaseCourseInfo(String courseId);
 }

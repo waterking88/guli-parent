@@ -41,5 +41,11 @@ public interface EduTeacherService extends IService<EduTeacher> {
      */
     List<EduTeacher> getPopularTeachers();
 
+    /**
+     * 分页查询讲师，前端展示
+     *
+     * @param pageParam
+     * @return
+     */
     Map<String, Object> pageListWeb(Page<EduTeacher> pageParam);
 }

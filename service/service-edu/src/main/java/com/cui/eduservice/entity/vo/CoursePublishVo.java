@@ -20,6 +20,8 @@ public class CoursePublishVo implements Serializable {
     private String subjectLevelOne;
     private String subjectLevelTwo;
     private String teacherName;
-    //只用于显示 不用修改，所以类型不使用BigDecimal
+    /**
+     * 只用于显示 不用修改，所以类型不使用BigDecimal
+     */
     private String price;
 }

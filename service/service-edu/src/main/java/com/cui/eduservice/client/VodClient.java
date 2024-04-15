@@ -20,9 +20,21 @@ import java.util.List;
 @Component
 public interface VodClient {
 
+    /**
+     * 根据视频id删除云端视频
+     *
+     * @param videoId
+     * @return
+     */
     @DeleteMapping(value = "/admin/vod/video/{videoId}")
     public R removeVideo(@PathVariable("videoId") String videoId);
 
+    /**
+     * 批量删除云端视频
+     *
+     * @param videoIdList
+     * @return
+     */
     @DeleteMapping(value = "/admin/vod/video/deleteBatch")
     public R removeVideoList(@RequestParam("videoIdList") List<String> videoIdList);
 }

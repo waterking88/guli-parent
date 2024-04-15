@@ -13,5 +13,12 @@ import com.cui.orderservice.entity.TOrder;
  */
 public interface TOrderService extends IService<TOrder> {
 
+    /**
+     * 保存订单信息
+     *
+     * @param courseId
+     * @param memberId
+     * @return
+     */
     String saveOrder(String courseId, String memberId);
 }

@@ -15,6 +15,12 @@ import java.util.Map;
  * @since 2024-04-12
  */
 public interface EduCommentService extends IService<EduComment> {
-
+    /**
+     * 分页查询评论
+     *
+     * @param pageParam
+     * @param courseId
+     * @return
+     */
     Map<String, Object> pageQuery(Page<EduComment> pageParam, String courseId);
 }

@@ -38,7 +38,14 @@ public class EduCommentController {
     @Autowired
     private UcenterClient ucenterClient;
 
-    //根据课程id查询评论列表
+    /**
+     * 根据课程id查询评论列表
+     *
+     * @param page
+     * @param limit
+     * @param courseId
+     * @return
+     */
     @ApiOperation(value = "评论分页列表")
     @GetMapping("{page}/{limit}")
     public R index(

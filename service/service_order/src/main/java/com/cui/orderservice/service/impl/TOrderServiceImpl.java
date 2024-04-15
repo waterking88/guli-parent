@@ -36,15 +36,12 @@ public class TOrderServiceImpl extends ServiceImpl<TOrderMapper, TOrder> impleme
         UcenterMemberEdu ucenterMemberEdu = ucenterClient.getInfo(memberId);
 
         //创建订单
-        TOrder tOrder = new TOrder();
-
-        //创建订单
         TOrder order = new TOrder();
         order.setOrderNo(OrderNoUtil.getOrderNo());
         order.setCourseId(courseId);
         order.setCourseTitle(courseInfoDto.getTitle());
         order.setCourseCover(courseInfoDto.getCover());
-        order.setTeacherName("test");
+        order.setTeacherName(courseInfoDto.getTeacherName());
         order.setTotalFee(courseInfoDto.getPrice());
         order.setMemberId(memberId);
         order.setMobile(ucenterMemberEdu.getMobile());

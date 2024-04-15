@@ -13,9 +13,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2024/4/4
  * @Description
  */
-@FeignClient("service-oss")
+@FeignClient(value = "service-oss", fallback = OssClientImpl.class)
 @Component
 public interface OssClient {
+    /**
+     * 根据url删除云端文件
+     *
+     * @param url
+     * @return
+     */
     @DeleteMapping(value = "/eduoss/file/remove")
     R remove(@RequestParam("url") String url);
 }
