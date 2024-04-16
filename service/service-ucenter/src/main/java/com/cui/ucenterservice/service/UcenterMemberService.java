@@ -45,4 +45,6 @@ public interface UcenterMemberService extends IService<UcenterMember> {
      * @return
      */
     UcenterMember getByOpenid(String openid);
+
+    Integer countRegisterByDay(String day);
 }

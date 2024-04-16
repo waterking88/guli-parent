@@ -1,22 +1,18 @@
-package com.cui.cmsservice;
+package com.cui.gateway;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @author water
- * @date 2024/4/7
+ * @date 2024/4/16
  * @Description
  */
 @SpringBootApplication
-@ComponentScan({"com.cui"})
-@MapperScan("com.cui.cmsservice.mapper")
 @EnableDiscoveryClient
-public class CmsApplication {
+public class ApiGatewayApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CmsApplication.class, args);
+        SpringApplication.run(ApiGatewayApplication.class, args);
     }
 }

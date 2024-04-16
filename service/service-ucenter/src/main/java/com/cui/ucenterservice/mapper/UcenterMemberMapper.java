@@ -13,4 +13,5 @@ import com.cui.ucenterservice.entity.UcenterMember;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
+    Integer selectRegisterCount(String day);
 }

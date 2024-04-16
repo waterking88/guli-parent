@@ -81,5 +81,18 @@ public class UcenterMemberController {
     }
 
 
+    /**
+     * 查询某一天的注册人数
+     *
+     * @param day
+     * @return
+     */
+    @GetMapping(value = "countregister/{day}")
+    public R registerCount(
+            @PathVariable String day) {
+        Integer count = ucenterMemberService.countRegisterByDay(day);
+        return R.ok().data("countRegister", count);
+    }
+
 }
 

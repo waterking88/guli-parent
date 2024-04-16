@@ -19,6 +19,7 @@
         <module>service-msm</module>
         <module>service-ucenter</module>
         <module>service_order</module>
+        <module>service_statistics</module>
     </modules>
     <dependencies>
         <!--        2024.3.19：一开始未使用先注释，否则报错-->

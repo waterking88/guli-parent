@@ -1,22 +1,27 @@
-package com.cui.cmsservice;
+package com.cui.staservice;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author water
- * @date 2024/4/7
+ * @EnableScheduling 开启定时任务
+ * @date 2024/4/15
  * @Description
  */
 @SpringBootApplication
-@ComponentScan({"com.cui"})
-@MapperScan("com.cui.cmsservice.mapper")
+@MapperScan("com.cui.staservice.mapper")
+@ComponentScan("com.cui")
 @EnableDiscoveryClient
-public class CmsApplication {
+@EnableFeignClients
+@EnableScheduling
+public class StaApplication {
     public static void main(String[] args) {
-        SpringApplication.run(CmsApplication.class, args);
+        SpringApplication.run(StaApplication.class, args);
     }
 }
