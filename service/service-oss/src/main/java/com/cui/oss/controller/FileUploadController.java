@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @RestController
 @RequestMapping("/eduoss/file")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @Api(tags = "阿里云文件管理")
 public class FileUploadController {
     @Autowired

@@ -23,7 +23,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/eduservice/edu-chapter")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @Api(tags = "课程章节管理")
 public class EduChapterController {
     @Autowired

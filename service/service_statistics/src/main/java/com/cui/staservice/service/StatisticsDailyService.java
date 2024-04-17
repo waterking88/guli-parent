@@ -16,7 +16,20 @@ import java.util.Map;
 public interface StatisticsDailyService extends IService<StatisticsDaily> {
 
 
+    /**
+     * 根据日期创建数据
+     *
+     * @param day
+     */
     void createStatisticsByDay(String day);
 
+    /**
+     * 获取图标数据
+     *
+     * @param begin
+     * @param end
+     * @param type
+     * @return
+     */
     Map<String, Object> getChartData(String begin, String end, String type);
 }

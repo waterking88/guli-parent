@@ -37,9 +37,12 @@ public class StatisticsDailyServiceImpl extends ServiceImpl<StatisticsDailyMappe
         //获取统计信息
         Integer registerNum = (Integer)
                 ucenterClient.registerCount(day).getData().get("countRegister");
-        Integer loginNum = RandomUtils.nextInt(100, 200);//TODO 暂时放随机数据
-        Integer videoViewNum = RandomUtils.nextInt(100, 200);//TODO
-        Integer courseNum = RandomUtils.nextInt(100, 200);//TODO
+        //TODO 暂时放随机数据
+        Integer loginNum = RandomUtils.nextInt(100, 200);
+        //TODO
+        Integer videoViewNum = RandomUtils.nextInt(100, 200);
+        //TODO
+        Integer courseNum = RandomUtils.nextInt(100, 200);
         //创建统计对象
         StatisticsDaily daily = new StatisticsDaily();
         daily.setRegisterNum(registerNum);

@@ -13,5 +13,11 @@ import com.cui.ucenterservice.entity.UcenterMember;
  */
 public interface UcenterMemberMapper extends BaseMapper<UcenterMember> {
 
+    /**
+     * 根据日期获取注册人数
+     *
+     * @param day
+     * @return
+     */
     Integer selectRegisterCount(String day);
 }

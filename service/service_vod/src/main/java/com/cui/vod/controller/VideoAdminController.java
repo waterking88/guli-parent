@@ -21,7 +21,7 @@ import java.util.List;
  * @Description
  */
 @Api(tags = "阿里云视频点播微服务")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @RestController
 @RequestMapping("/admin/vod/video")
 public class VideoAdminController {

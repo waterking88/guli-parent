@@ -18,7 +18,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/staservice/statistics-daily")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 public class StatisticsDailyController {
 
     @Autowired

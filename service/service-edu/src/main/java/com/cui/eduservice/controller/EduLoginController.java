@@ -2,7 +2,10 @@ package com.cui.eduservice.controller;
 
 import com.cui.commonutils.R;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author water
@@ -13,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/eduservice/user")
 @Api(tags = "登录")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 public class EduLoginController {
 
     @PostMapping("login")

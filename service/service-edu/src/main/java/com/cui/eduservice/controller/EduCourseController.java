@@ -27,7 +27,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/eduservice/edu-course")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @Api(tags = "课程管理")
 public class EduCourseController {
     @Autowired

@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/orderservice/t-order")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 public class TOrderController {
     @Autowired
     private TOrderService orderService;

@@ -9,7 +9,10 @@ import com.cui.eduservice.service.EduTeacherService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
@@ -21,7 +24,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/eduservice/teacherfront")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 public class TeacherFrontController {
 
     @Autowired

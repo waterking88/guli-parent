@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * @author cui
  * @since 2024-04-07
  */
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @RestController
 @RequestMapping("/cmsservice/crm-banner")
 @Api(tags = "banner管理")

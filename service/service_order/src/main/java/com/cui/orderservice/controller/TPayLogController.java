@@ -4,7 +4,10 @@ package com.cui.orderservice.controller;
 import com.cui.commonutils.R;
 import com.cui.orderservice.service.TPayLogService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
@@ -18,7 +21,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/orderservice/t-pay-log")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 public class TPayLogController {
     @Autowired
     private TPayLogService tPayLogService;

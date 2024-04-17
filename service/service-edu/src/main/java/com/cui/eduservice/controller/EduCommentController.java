@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @Slf4j
 @RestController
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @Api(tags = "课程评论")
 @RequestMapping("/eduservice/edu-comment")
 public class EduCommentController {

@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/ucenterservice/ucenter-member")
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @Api(tags = "用户管理")
 public class UcenterMemberController {
     @Autowired

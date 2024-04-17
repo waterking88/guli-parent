@@ -28,7 +28,7 @@ import java.util.Map;
  * @Description
  */
 @RestController
-@CrossOrigin
+//@CrossOrigin  网关已配置跨域
 @RequestMapping("/eduservice/coursefront")
 public class CourseFrontController {
     @Autowired

@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Component
 @FeignClient("service-ucenter")
 public interface UcenterClient {
+    /**
+     * 根据日期获取注册人数
+     *
+     * @param day
+     * @return
+     */
     @GetMapping(value = "/ucenterservice/ucenter-member/countregister/{day}")
     public R registerCount(@PathVariable("day") String day);
 }

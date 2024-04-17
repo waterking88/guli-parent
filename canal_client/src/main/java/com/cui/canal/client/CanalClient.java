@@ -25,7 +25,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 @Component
 public class CanalClient {
-    //sql队列
+    /**
+     * sql队列
+     */
     private Queue<String> SQL_QUEUE = new ConcurrentLinkedQueue<>();
     @Resource
     private DataSource dataSource;
