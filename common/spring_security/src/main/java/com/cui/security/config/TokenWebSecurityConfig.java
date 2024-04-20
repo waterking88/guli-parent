@@ -21,6 +21,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * <p>
  * Security配置类
  * </p>
+ * <p>
+ * 这个配置指明了用户名密码的处理方式、请求路径的开合、登录登出控制等和安全相关的配置
  *
  * @author qy
  * @since 2019-11-18
@@ -30,8 +32,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    //自定义查询数据库类·
     private UserDetailsService userDetailsService;
+    //生成token工具
     private TokenManager tokenManager;
+    //密码处理
     private DefaultPasswordEncoder defaultPasswordEncoder;
     private RedisTemplate redisTemplate;
 
@@ -57,6 +62,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 .authorizeRequests()
                 .anyRequest().authenticated()
+                //spring security 自动帮我们退出的，理论上地址可以随便写。
                 .and().logout().logoutUrl("/admin/acl/index/logout")
                 .addLogoutHandler(new TokenLogoutHandler(tokenManager, redisTemplate)).and()
                 .addFilter(new TokenLoginFilter(authenticationManager(), tokenManager, redisTemplate))
@@ -82,10 +88,7 @@ public class TokenWebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/api/**",
-//                "/swagger-resources/**", "/webjars/**", "/v2/**", "/swagger-ui.html/**"
-//               );
-        web.ignoring().antMatchers("/*/**"
+        web.ignoring().antMatchers("/swagger-ui.html/**", "/webjars/**", "/v2/**", "/swagger-resources/**"
         );
     }
 }

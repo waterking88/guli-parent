@@ -39,11 +39,8 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
                 ServerHttpResponse response = exchange.getResponse();
                 return out(response);
             } else {
-//                Boolean isCheck = JwtUtils.checkToken(tokenList.get(0));
-//                if(!isCheck) {
                 ServerHttpResponse response = exchange.getResponse();
                 return out(response);
-//                }
             }
         }
         //内部服务接口，不允许外部访问
@@ -66,7 +63,6 @@ public class AuthGlobalFilter implements GlobalFilter, Ordered {
         message.addProperty("data", "鉴权失败");
         byte[] bits = message.toString().getBytes(StandardCharsets.UTF_8);
         DataBuffer buffer = response.bufferFactory().wrap(bits);
-        //response.setStatusCode(HttpStatus.UNAUTHORIZED);
         //指定编码，否则在浏览器中会中文乱码
         response.getHeaders().add("Content-Type", "application/json;charset=UTF-8");
         return response.writeWith(Mono.just(buffer));

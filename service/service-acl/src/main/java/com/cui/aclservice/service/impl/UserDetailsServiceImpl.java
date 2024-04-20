@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  * <p>
- * 自定义userDetailsService - 认证用户详情
+ * 自定义userDetailsService - 认证用户详情 实现接口UserDetailsService
  * </p>
  *
  * @author qy
@@ -32,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private PermissionService permissionService;
 
     /***
-     * 根据账号获取用户信息
+     * 根据账号获取用户信息，传给security
      * @param username:
      * @return: org.springframework.security.core.userdetails.UserDetails
      */

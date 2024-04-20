@@ -2,14 +2,19 @@ package com.cui.orderservice.controller;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cui.commonutils.JwtUtils;
 import com.cui.commonutils.R;
 import com.cui.orderservice.entity.TOrder;
+import com.cui.orderservice.entity.TOrderQuery;
 import com.cui.orderservice.service.TOrderService;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * <p>
@@ -61,5 +66,22 @@ public class TOrderController {
             return false;
         }
     }
+
+    @PostMapping("pageQuery/{page}/{limit}")
+    @ApiOperation(value = "分页订单列表")
+    public R pageQuery(
+            @ApiParam(name = "page", value = "当前页码", required = true)
+            @PathVariable long page,
+            @ApiParam(name = "limit", value = "每页记录数", required = true)
+            @PathVariable Long limit,
+            @ApiParam(name = "orderQuery", value = "查询对象", required = false)
+            @RequestBody(required = false) TOrderQuery orderQuery) {
+        Page<TOrder> pageParam = new Page<>(page, limit);
+        orderService.pageQuery(pageParam, orderQuery);
+        List<TOrder> records = pageParam.getRecords();
+        long total = pageParam.getTotal();
+        return R.ok().data("total", total).data("rows", records);
+    }
+
 }
 

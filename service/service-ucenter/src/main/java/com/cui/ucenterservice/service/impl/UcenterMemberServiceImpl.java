@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cui.commonutils.JwtUtils;
 import com.cui.commonutils.MD5;
+import com.cui.commonutils.R;
 import com.cui.servicebase.exception.GuliException;
 import com.cui.ucenterservice.entity.UcenterMember;
 import com.cui.ucenterservice.entity.vo.LoginVo;
@@ -59,7 +60,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
     }
 
     @Override
-    public void register(RegisterVo registerVo) {
+    public R register(RegisterVo registerVo) {
         //获取注册信息，进行校验
         String nickname = registerVo.getNickname();
         String mobile = registerVo.getMobile();
@@ -76,13 +77,13 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         //从redis获取发送的验证码
         String mobleCode = redisTemplate.opsForValue().get(mobile);
         if (!code.equals(mobleCode)) {
-            throw new GuliException(20001, "error");
+            throw new GuliException(20001, "验证码错误");
         }
         //查询数据库中是否存在相同的手机号码
         Integer count = baseMapper.selectCount(new
                 QueryWrapper<UcenterMember>().eq("mobile", mobile));
         if (count.intValue() > 0) {
-            throw new GuliException(20001, "error");
+            throw new GuliException(20001, "手机号已注册过");
         }
         //添加注册信息到数据库
         UcenterMember ucenterMember = new UcenterMember();
@@ -92,6 +93,7 @@ public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, U
         ucenterMember.setIsDisabled(false);
         ucenterMember.setAvatar("http://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eoj0hHXhgJNOTSOFsS4uZs8x1ConecaVOB8eIl115xmJZcT4oCicvia7wMEufibKtTLqiaJeanU2Lpg3w/132");
         this.save(ucenterMember);
+        return R.ok();
     }
 
     /**

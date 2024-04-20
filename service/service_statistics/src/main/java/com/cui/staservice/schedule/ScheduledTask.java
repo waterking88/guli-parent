@@ -17,18 +17,6 @@ import java.util.Date;
 public class ScheduledTask {
     @Autowired
     private StatisticsDailyService dailyService;
-
-    /**
-     * 测试
-     * * 每天七点到二十三点每五秒执行一次
-     */
-//    @Scheduled(cron = "0/5 * * * * ?")
-
-
-//    public void task1() {
-//        System.out.println("*********++++++++++++*****执行了");
-//    }
-
     /**
      * * 每天凌晨1点执行定时
      * cron表达式要6位，不能7位会报错

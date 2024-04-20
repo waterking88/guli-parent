@@ -69,8 +69,6 @@ public class TPayLogServiceImpl extends ServiceImpl<TPayLogMapper, TPayLog> impl
             map.put("total_fee", order.getTotalFee());
             map.put("result_code", resultMap.get("result_code"));
             map.put("code_url", resultMap.get("code_url"));
-            //微信支付二维码2小时过期，可采取2小时未支付取消订单
-//            redisTemplate.opsForValue().set(orderNo, map, 120, TimeUnit.MINUTES);
             return map;
         } catch (Exception e) {
             e.printStackTrace();

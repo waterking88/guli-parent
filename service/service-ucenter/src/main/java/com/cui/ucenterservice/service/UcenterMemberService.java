@@ -1,6 +1,7 @@
 package com.cui.ucenterservice.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.cui.commonutils.R;
 import com.cui.ucenterservice.entity.UcenterMember;
 import com.cui.ucenterservice.entity.vo.LoginVo;
 import com.cui.ucenterservice.entity.vo.RegisterVo;
@@ -28,7 +29,7 @@ public interface UcenterMemberService extends IService<UcenterMember> {
      *
      * @param registerVo
      */
-    void register(RegisterVo registerVo);
+    R register(RegisterVo registerVo);
 
     /**
      * 根据用户id获取用户信息
