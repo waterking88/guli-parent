@@ -10,6 +10,7 @@ import com.aliyuncs.exceptions.ServerException;
 import com.aliyuncs.http.MethodType;
 import com.aliyuncs.profile.DefaultProfile;
 import com.cui.msmservice.service.MsmService;
+import com.cui.msmservice.utils.ConstantPropertiesUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -32,8 +33,8 @@ public class MsmServiceImpl implements MsmService {
             return false;
         }
         DefaultProfile profile =
-                DefaultProfile.getProfile("default", "LTAI5tM1R3e43x2Sj5MNUrBZ",
-                        "6N5D3dJ8bMRK281P5iw1Im5pk4k8YQ");
+                DefaultProfile.getProfile("default", ConstantPropertiesUtil.ACCESS_KEY_ID,
+                        ConstantPropertiesUtil.ACCESS_KEY_SECRET);
         IAcsClient client = new DefaultAcsClient(profile);
         CommonRequest request = new CommonRequest();
         //提交方式

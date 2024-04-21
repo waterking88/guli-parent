@@ -9,6 +9,7 @@ import com.aliyuncs.vod.model.v20170321.GetPlayInfoRequest;
 import com.aliyuncs.vod.model.v20170321.GetPlayInfoResponse;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthRequest;
 import com.aliyuncs.vod.model.v20170321.GetVideoPlayAuthResponse;
+import com.cui.vod.utils.ConstantPropertiesUtil;
 import org.junit.Test;
 
 import java.util.List;
@@ -20,8 +21,9 @@ import java.util.List;
  */
 public class testVod {
 
-    String accessKeyId = "LTAI5tM1R3e43x2Sj5MNUrBZ";
-    String accessKeySecret = "6N5D3dJ8bMRK281P5iw1Im5pk4k8YQ";
+    String accessKeyId = ConstantPropertiesUtil.ACCESS_KEY_ID;
+    String accessKeySecret = ConstantPropertiesUtil.ACCESS_KEY_SECRET;
+
 
     /**
      * 获取视频播放凭证
